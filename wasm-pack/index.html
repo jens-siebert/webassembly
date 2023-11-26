@@ -1,0 +1,19 @@
+<!doctype html>
+
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Factorial</title>
+  </head>
+
+  <body>
+    <script type="module">
+      import initSync, { factorial_alert } from "./pkg/wasm_pack.js"
+      initSync().then(() => {
+        factorial_alert(BigInt(10));
+      });
+    </script>
+  </body>
+
+</html>
