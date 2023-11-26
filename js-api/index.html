@@ -1,0 +1,28 @@
+<!doctype html>
+
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Factorial</title>
+  </head>
+
+  <body>
+    <div id="output"></div>
+    <script>
+      const importObject = {
+        imports: { /* put any JS-to-WASM imports here. */ },
+      };
+
+      fetch("target/wasm32-unknown-unknown/debug/js_api.wasm").then(response =>
+        response.arrayBuffer()
+      ).then(bytes =>
+        WebAssembly.instantiate(bytes, importObject)
+      ).then(result => {
+        let output = document.getElementById("output");
+        output.innerHTML = `The factorial of 10 is: ${result.instance.exports.factorial(BigInt(10))}`
+      });
+    </script>
+  </body>
+
+</html>
